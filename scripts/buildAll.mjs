@@ -10,7 +10,7 @@ const buildAll = async () => {
 
     build: {
       lib: {
-        entry: resolve(srcPath, 'index.ts'),
+        entry: resolve(srcPath, 'components', 'index.ts'),
         name: 'uikit',
         formats: ['cjs', 'es'],
         fileName: (format) => `uikit.${format}.js`,

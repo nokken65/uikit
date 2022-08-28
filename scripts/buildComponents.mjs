@@ -13,7 +13,7 @@ const buildComponents = async () => {
 
       build: {
         lib: {
-          entry: resolve(srcPath, name, 'index.ts'),
+          entry: resolve(srcPath, 'components', name, 'index.ts'),
           name: name,
           formats: ['cjs', 'es'],
           fileName: (format) => `index.${format}.js`,

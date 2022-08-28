@@ -1,0 +1,17 @@
+.btn {
+  @apply relative z-0 flex shrink-0 appearance-none items-center justify-center gap-2 overflow-hidden whitespace-nowrap p-2 leading-none transition-colors duration-150 ease-in-out disabled:pointer-events-none;
+
+  &--primary {
+    @apply bg-emerald-500 text-white hover:bg-emerald-600;
+    @apply dark:hover:bg-emerald-500/70;
+  }
+
+  &--ghost {
+    @apply bg-transparent text-slate-600 hover:bg-slate-400/50 hover:text-slate-900;
+    @apply dark:text-slate-400 dark:hover:text-white;
+  }
+
+  &--ripple {
+    @apply absolute animate-ripple rounded-full bg-white/30;
+  }
+}

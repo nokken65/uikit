@@ -12,9 +12,12 @@ const mkdir = promisify(fs.mkdir);
 const rm = promisify(fs.rm);
 
 const resolveNames = async () => {
-  const found = globbySync(`${srcPath}/*/${packageMarker}`);
+  const found = globbySync(`${srcPath}/components/*/${packageMarker}`);
   const names = found.map((name) =>
-    name.replace(`/${packageMarker}`, '').replace(`${srcPath}/`, ''),
+    name
+      .replace(`${srcPath}/`, '')
+      .replace(`components/`, '')
+      .replace(`/${packageMarker}`, ''),
   );
 
   return names;
