@@ -3,27 +3,37 @@ import { ButtonHTMLAttributes, memo } from 'react';
 
 import styles from './Button.module.scss';
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  isRounded?: boolean;
-  isDanger?: boolean;
+export type ButtonProps = Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'type'
+> & {
+  type?: 'primary' | 'ghost';
+  bordered?: boolean;
+  rounded?: boolean;
+  htmlType?: 'submit' | 'reset' | 'button';
 };
 
 const ButtonView = ({
-  isRounded = true,
-  isDanger = false,
   children,
+  type = 'primary',
+  rounded = true,
+  bordered = false,
+  htmlType = 'button',
   className,
-  ...rest
+  ...props
 }: ButtonProps) => {
   return (
     <button
-      {...rest}
       className={clsx(
-        styles.btn,
+        // styles.btn,
         className,
-        isRounded && styles.btnRounded,
-        isDanger && styles.btnDanger,
+        rounded && 'rounded-lg',
+        bordered && 'border-2',
+        // type === 'primary' && styles.,
+        // type === 'ghost' && styles.btnGhost,
       )}
+      type={htmlType === 'submit' ? 'submit' : 'button'}
+      {...props}
     >
       {children}
     </button>
