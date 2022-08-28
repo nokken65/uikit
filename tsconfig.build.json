@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+    "declarationDir": "./dist",
+    "declaration": true,
+    "declarationMap": false,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "allowJs": false
+  },
+  "exclude": [
+    "**/*.test.ts",
+    "*.test.ts",
+    "integration",
+    "**/*.d.ts",
+    "**/*.map",
+    "**/*.stories.*",
+    "dist",
+    "test-typings"
+  ],
+  "include": ["src"]
+}
