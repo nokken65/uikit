@@ -1,18 +1,19 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { regexesOfExternalPackages } from "./constants.mjs";
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+
+import { regexesOfExternalPackages } from './constants.mjs';
 
 export default defineConfig(() => ({
-  mode: "production",
+  mode: 'production',
   build: {
-    minify: "esbuild",
-    target: "esnext",
+    minify: 'esbuild',
+    target: 'esnext',
     sourcemap: true,
     rollupOptions: {
       output: {
         globals: {
-          react: "React",
-          clsx: "Clsx",
+          react: 'React',
+          clsx: 'Clsx',
         },
       },
       external: regexesOfExternalPackages,
@@ -20,7 +21,7 @@ export default defineConfig(() => ({
   },
   plugins: [
     react({
-      include: "**/*.tsx",
+      include: '**/*.tsx',
       exclude: /\.stories\.(t|j)sx?$/,
       fastRefresh: false,
     }),

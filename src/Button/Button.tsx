@@ -1,6 +1,7 @@
-import clsx from "clsx";
-import { ButtonHTMLAttributes, memo } from "react";
-import styles from "./Button.module.scss";
+import clsx from 'clsx';
+import { ButtonHTMLAttributes, memo } from 'react';
+
+import styles from './Button.module.scss';
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   isRounded?: boolean;
@@ -21,7 +22,7 @@ const ButtonView = ({
         styles.btn,
         className,
         isRounded && styles.btnRounded,
-        isDanger && styles.btnDanger
+        isDanger && styles.btnDanger,
       )}
     >
       {children}
@@ -31,6 +32,6 @@ const ButtonView = ({
 
 const Button = memo(ButtonView);
 
-Button.displayName = "Button";
+Button.displayName = 'Button';
 
 export { Button };

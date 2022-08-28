@@ -1,5 +1,5 @@
-import { resolve } from "node:path";
-import { defineConfig } from "vite";
+import { resolve } from 'node:path';
+import { defineConfig } from 'vite';
 
 export default defineConfig(() => ({
   plugins: [],
@@ -7,11 +7,11 @@ export default defineConfig(() => ({
     open: false,
     hmr: true,
   },
-  root: ".",
+  root: '.',
   clearScreen: false,
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./src"),
+      '@': resolve(__dirname, './src'),
     },
   },
   esbuild: {

@@ -1,8 +1,9 @@
-import { globbySync } from "globby";
-import { packageMarker, srcPath } from "./constants.mjs";
-import { promisify } from "util";
-import { dirname } from "node:path";
-import fs from "node:fs";
+import { globbySync } from 'globby';
+import fs from 'node:fs';
+import { dirname } from 'node:path';
+import { promisify } from 'util';
+
+import { packageMarker, srcPath } from './constants.mjs';
 
 const writeFile = promisify(fs.writeFile);
 const copyFile = promisify(fs.copyFile);
@@ -13,8 +14,9 @@ const rm = promisify(fs.rm);
 const resolveNames = async () => {
   const found = globbySync(`${srcPath}/*/${packageMarker}`);
   const names = found.map((name) =>
-    name.replace(`/${packageMarker}`, "").replace(`${srcPath}/`, "")
+    name.replace(`/${packageMarker}`, '').replace(`${srcPath}/`, ''),
   );
+
   return names;
 };
 
@@ -23,7 +25,7 @@ const createCommonJsIndex = (names) => {
     return `module.exports.${name} = require('./${name}/index.cjs.js').${name};`;
   });
 
-  return imports.join("\n") + "\n";
+  return imports.join('\n') + '\n';
 };
 
 const createMjsIndex = (names) => {
@@ -31,7 +33,7 @@ const createMjsIndex = (names) => {
     return `export { ${name} } from './${name}/index.es.js'`;
   });
 
-  return imports.join("\n") + "\n";
+  return imports.join('\n') + '\n';
 };
 
 const createTypingsIndex = (names) => {
@@ -39,7 +41,7 @@ const createTypingsIndex = (names) => {
     .sort()
     .map((name) => `export { ${name} } from './${name}';`);
 
-  return types.join("\n") + "\n";
+  return types.join('\n') + '\n';
 };
 
 const createExportsMap = (names) => {
@@ -52,6 +54,7 @@ const createExportsMap = (names) => {
       import: `./${name}/index.es.js`,
     };
   });
+
   return object;
 };
 
@@ -62,23 +65,24 @@ const createDistribution = async (dir) => {
       if (!(await exists(directory))) {
         await mkdir(directory, { recursive: true });
       }
+
       return writeFile(`${dir}/${path}`, content);
     },
     copyList: (source, list, fn = (i) => i) =>
       Promise.all(
-        list.map((file) => copyFile(`${source}/${file}`, `${dir}/${fn(file)}`))
+        list.map((file) => copyFile(`${source}/${file}`, `${dir}/${fn(file)}`)),
       ),
   };
 };
 
 export {
-  rm,
-  exists,
-  writeFile,
-  resolveNames,
   createCommonJsIndex,
+  createDistribution,
+  createExportsMap,
   createMjsIndex,
   createTypingsIndex,
-  createExportsMap,
-  createDistribution,
+  exists,
+  resolveNames,
+  rm,
+  writeFile,
 };

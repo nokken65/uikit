@@ -1,5 +1,5 @@
 .btn {
-  @apply bg-blue-400 px-4 py-1 text-white font-bold transition-colors duration-200 ease-in-out;
+  @apply bg-blue-400 px-4 py-1 font-bold text-white transition-colors duration-200 ease-in-out;
 
   &Rounded {
     @apply rounded-lg;

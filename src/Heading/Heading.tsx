@@ -1,8 +1,9 @@
-import clsx from "clsx";
-import { HTMLAttributes, memo } from "react";
-import styles from "./Heading.module.scss";
+import clsx from 'clsx';
+import { HTMLAttributes, memo } from 'react';
 
-export type HeadingProps = HTMLAttributes<HTMLHeadingElement> & {};
+import styles from './Heading.module.scss';
+
+export type HeadingProps = HTMLAttributes<HTMLHeadingElement>;
 
 const HeadingView = ({ children, className, ...rest }: HeadingProps) => {
   return (
